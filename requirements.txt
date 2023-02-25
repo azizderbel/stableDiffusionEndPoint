@@ -5,4 +5,4 @@ scipy
 ftfy
 accelerate
 pyngrok==4.1.1
-Flask
+flask_ngrok

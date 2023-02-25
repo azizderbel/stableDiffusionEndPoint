@@ -1,3 +1,4 @@
+from flask_ngrok import run_with_ngrok
 from flask import Flask, render_template, request
 
 import torch
@@ -8,10 +9,11 @@ from io import BytesIO
 
 # Load model
 pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", revision="fp16", torch_dtype=torch.float16)
-#pipe.to("cuda")
+pipe.to("cuda")
 
 # Start flask app and set to ngrok
 app = Flask(__name__)
+run_with_ngrok(app)
 
 @app.route('/')
 def initial():
@@ -36,4 +38,4 @@ def generate_image():
   #return render_template('index.html', generated_image=img_str)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

@@ -35,7 +35,7 @@ def generate_image():
 
   print("Sending image ...")
   return img_str,200
-  #return render_template('index.html', generated_image=img_str)
+
 
 if __name__ == '__main__':
     app.run()

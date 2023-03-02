@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='icon.png') }}" />
+    <script src="{{ url_for('static', filename='js/jquery-3.6.3.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Stable Diffusion demo</title>
 </head>
 <body>
 <div class="container">
-  <h3 class="center-align">Stable Diffusion App</h3>
-  <p class="center-align">Generate images with stable diffusion for free! Enter your prompt below and hit "Create" to generate an image (takes ~10 seconds per image).</p>
+  <h3 class="center-align">Stable Diffusion Generator</h3>
+  <p class="center-align">Generate images with stable diffusion for free! Enter your prompt below and hit "Generate" to generate an image (takes ~10 seconds per image).</p>
     <div class="container">
       <div class="row">
         <div class="input-field col s9">
@@ -22,9 +24,29 @@
           <textarea id="user-prompt" class="materialize-textarea"></textarea>
           <label for="icon_prefix2">Prompt</label>
         </div>
-        <button class="btn waves-effect waves-light" id="submit">Generate
+        <button class="btn waves-effect waves-light" id="submit" style="margin-top: 20px; margin-left: 10px;">Generate
           <i class="material-icons right">send</i>
         </button>
+      </div>
+      <div class="row">
+        <div class="input-field col s9">
+          <i class="material-icons prefix">textsms</i>
+          <input type="text" id="scheduler" class="autocomplete">
+          <label for="scheduler">Scheduler</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s3 inline">
+          <input id="seed" value="0" placeholder="Seed">
+          <label for="seed"></label>
+          <span class="helper-text">Seed for results reproducibility</span>
+        </div>
+        <p class="center-align">
+          <label class="col s6" style="text-align: left; margin-top: 40px;">
+            <input id="gpu" type="checkbox"/>
+            <span>Run on GPU</span>
+          </label>
+        </p>
       </div>
       <div class="row">
         <div class="progress">
@@ -32,13 +54,11 @@
         </div>
       </div>
       <div class="row">
-        <img src="{{ generated_image|default("https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/0715034d-4044-4c55-9131-e4bfd6dd20ca/2_4x.png?format=512w", true) }}" class="mainImg">
+        <img src="{{ generated_image|default("https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/0715034d-4044-4c55-9131-e4bfd6dd20ca/2_4x.png?format=512w", true) }}" class="mainImg" width="512" height="512">
       </div>
     </div>
 </div>
-    <script src="{{ url_for('static', filename='js/jquery-3.6.3.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
 

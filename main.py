@@ -14,7 +14,7 @@ if torch.cuda.is_available():
   DEVICE = 'cuda'
 
 # Load model
-pipe = StableDiffusionPipeline.from_pretrained("./stable-diffusion-v1-5")
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
                                               
                                                
 

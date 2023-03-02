@@ -14,11 +14,9 @@ if torch.cuda.is_available():
   DEVICE = 'cuda'
 
 # Load model
-pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", revision="fp16", torch_dtype=torch.float16)
                                               
                                                
-
-
 
 #Start flask app and set to ngrok
 app = Flask(__name__)
